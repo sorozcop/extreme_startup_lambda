@@ -24,7 +24,11 @@ public class ResponderModel {
             int [] enteros=convertirVectorAEnteros(elementos);
             return String.valueOf(obtenerEnteroMayor(enteros));
         }
-        
+
+        Matcher addNumMatcher = Pattern.compile(".*what is (\\d+) plus (\\d+)").matcher(question);
+        if (addNumMatcher.matches()) {
+            return String.valueOf(Integer.parseInt(addNumMatcher.group(1)) + Integer.parseInt(addNumMatcher.group(2)));
+        }
         return teamName;
     }
 
