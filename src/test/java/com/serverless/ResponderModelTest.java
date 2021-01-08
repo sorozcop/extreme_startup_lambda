@@ -2,9 +2,6 @@ package com.serverless;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ResponderModelTest {
@@ -12,6 +9,13 @@ public class ResponderModelTest {
     public void  cuandoPreguntanPorElNombreRespondeElemento(){
         ResponderModel responder = new ResponderModel();
         String pregunta = "75aee560: what is your name";
+        String respuesta = responder.answer(pregunta);
+        assertThat(respuesta).isEqualTo("Elemento");
+    }
+    @Test
+    public void testCuandoLaPeticionEsIncorrectaDebeDevolverNombrePorDefecto (){
+        ResponderModel responder = new ResponderModel();
+        String pregunta = "hat is your name";
         String respuesta = responder.answer(pregunta);
         assertThat(respuesta).isEqualTo("Elemento");
     }
@@ -26,9 +30,8 @@ public class ResponderModelTest {
     public void testCuandoPreguntaElNumeroMayorDebeDevolver659 (){
         ResponderModel responder = new ResponderModel();
         String pregunta = "56c32210: which of the following numbers is the largest: 659, 767, 10, 52";
-
         String respuesta = responder.answer(pregunta);
-        assertThat(respuesta).isEqualTo("659");
+        assertThat(respuesta).isEqualTo("767");
     }
     @Test
     public void testCuandoPreguntaElNumeroMayorDebeDevolver561 (){
@@ -36,6 +39,13 @@ public class ResponderModelTest {
         String pregunta = "56c32210: which of the following numbers is the largest: 6, 346, 75, 561";
         String respuesta = responder.answer(pregunta);
         assertThat(respuesta).isEqualTo("561");
+    }
+    @Test
+    public void testCuandoPreguntaElNumeroMayorDebeDevolver672 (){
+        ResponderModel responder = new ResponderModel();
+        String pregunta = "47fef510: which of the following numbers is the largest: 97, 672";
+        String respuesta = responder.answer(pregunta);
+        assertThat(respuesta).isEqualTo("672");
     }
     @Test
     public void testCuandoSolicitaAdicionDe10Y17DebeDevolver27 (){
